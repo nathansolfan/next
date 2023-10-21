@@ -1,4 +1,5 @@
-import { Inter } from 'next/font/google'
+// import { Inter } from 'next/font/google'
+import { Rubik } from 'next/font/google'
 import './globals.css'
 // header and footer will be here
 // like global css and adding fonts
@@ -7,8 +8,9 @@ import './globals.css'
 import Navbar from './components/Navbar'
 
 
-
-const inter = Inter({ subsets: ['latin'] })
+// here`s an example of the fonts
+// changed from Inter to Rubik, also the const name
+const rubik = Rubik({ subsets: ['latin'] })
 
 
 // metadata
@@ -22,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* we output the content  */}
-      <body className={inter.className}>
+      <body className={rubik.className}>
        <Navbar/>
        {children}
       </body>
