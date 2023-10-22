@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React from "react"
 // by standard all components are servers
 // server components we can declare as asysnc
@@ -7,7 +8,7 @@ import React from "react"
 // its coming from json server
 async function getTickets(){
     // we can add a 2nd argument OBJECT, for revalidation after a certain time
-    const response = await fetch('http://localhost:4000/tickets')
+    const response = await fetch('http://localhost:4000/tickets',)
 
     // grab the data from the response
     // returns a promise so we have to await it
@@ -24,11 +25,14 @@ export default async function TicketsList() {
     {tickets.map((ticket) => (
                 // Use parentheses to return JSX
                 <div key={ticket.id} className="card my-5">
+                    {/* we import link and give it a h ref - `` template string  */}
+                    <Link href={`/tickets/${ticket.id}`}>
                     <h3>{ticket.title}</h3>
                     <p>{ticket.body.slice(0, 200)}...</p>
                     <div className={`pill ${ticket.priority}`}>
                         {ticket.priority} priority
                     </div>
+                    </Link>
                 </div>
             ))}
             {tickets.length === 0 && (
