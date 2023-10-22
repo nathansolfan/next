@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import TicketsList from './TicketsList'
+import Loading from './loading'
 // steps to Fetch and Re validate the Data
 // 1 create _data folder and db.json file, insert "id", "title", "body"
 // 2 open terminal - npm install json-server
@@ -13,8 +14,13 @@ export default function Tickets() {
             <p><small>Currently open tickets.</small></p>
           </div>
         </nav>
-        
-        <TicketsList/>
+
+        {/* add the Suspense here */}
+        {/* the rest of the data can be shown on the page straight away */}
+        {/* manually add the fallback prop and specif the component */}
+        <Suspense fallback={ <Loading/>}>
+          <TicketsList/>
+        </Suspense>
     </main>
   )
 }
