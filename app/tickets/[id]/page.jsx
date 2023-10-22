@@ -18,7 +18,12 @@ return tickets.map((ticket)=> ({
 }
 
 // we fetch the single ID
-async function getTicket(id){   
+async function getTicket(id){  
+      // imitate a delay
+    // we wait a Promise to resolve, which will take 3sec
+    await new Promise(resolve => setTimeout(resolve, 3000))
+    
+    // this is similar to TicketsList.jsx, but we include the ${id}
     const response = await fetch(`http://localhost:4000/tickets/${id}`, {
         next:{
             revalidate: 60
