@@ -4,7 +4,7 @@ import TicketsList from './TicketsList'
 // 1 create _data folder and db.json file, insert "id", "title", "body"
 // 2 open terminal - npm install json-server
 // 3 - json-server  --watch --port 4000 ./_data/db.json
-export default function News() {
+export default function Tickets() {
   return (
     <main>
         <nav>
