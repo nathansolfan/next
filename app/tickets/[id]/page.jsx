@@ -1,4 +1,21 @@
+import { notFound } from 'next/navigation'
 import React from 'react'
+
+// for any request for new tickets that dont have pages made for them, nextjs will try to fetch it
+// for ths to work we add the notFound() 
+// 
+export const dynamicParams = true
+
+// static rendering the pages
+export async function generateStaticParams() {
+    const response = await fetch('http://localhost:4000/tickets')
+
+const tickets = await response.json()
+// we map though the response (tickets) and prerender the ids
+return tickets.map((ticket)=> ({
+    id: ticket.id
+}))
+}
 
 // we fetch the single ID
 async function getTicket(id){   
@@ -7,6 +24,10 @@ async function getTicket(id){
             revalidate: 60
         }
     })
+// inside the getTicket() we add the notFound
+    if(!response.ok){
+        notFound()
+    }
 
     // grab the data from the response
     // returns a promise so we have to await it
