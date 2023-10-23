@@ -38,8 +38,7 @@ export default function CreateForm() {
             body: JSON.stringify(ticket)
         })
         // now if res ok we redirect
-        if(response.status === 201){
-            router.refresh()
+        if(response.status = 201){
             router.push('/tickets')
         }
     }
