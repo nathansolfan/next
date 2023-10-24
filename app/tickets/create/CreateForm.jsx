@@ -25,7 +25,7 @@ export default function CreateForm() {
         setIsLoading(true)
 
         // object for the new ticket
-        const ticket = {
+        const newTicket = {
             title, body, priority, user_email:'mario@hotmail.com'
         }
 
@@ -34,8 +34,8 @@ export default function CreateForm() {
             method: "POST",
             // here the data we sending is json
             headers: {"Content-Type": "application/json"},
-            // here is the actually data and we stringify it
-            body: JSON.stringify(ticket)
+            // here is the actually data and we stringify it to JSON
+            body: JSON.stringify(newTicket)
         })
         // now if res ok we redirect
         if(response.status === 201){
@@ -53,20 +53,18 @@ export default function CreateForm() {
             <span>Title:</span>
             <input
             required
-            type="text"
             // onChange fires a function setTitle, which happens when event(clicked), the target which is the input and the value which is what they type. Watch it real time
             onChange={(e) => setTitle(e.target.value)}
             // two-way data binding the value is equal to the title
-            value={title}            
+            value={body}            
             />
         </label>
 
         {/* This for the body */}
         <label>
             <span>Body:</span>
-            <input
+            <textarea
             required
-            type='text'
             // again, on change fires a arrow function
             onChange={ (e) => setBody(e.target.value)}
             value={body}

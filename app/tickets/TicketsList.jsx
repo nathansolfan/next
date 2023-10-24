@@ -1,6 +1,6 @@
 import Link from "next/link"
 import React from "react"
-import { resolve } from "styled-jsx/css"
+
 // by standard all components are servers
 // server components we can declare as asysnc
 // and use the fetch api directly
@@ -11,20 +11,21 @@ async function getTickets(){
 
     // imitate a delay
     // we wait a Promise to resolve, which will take 3sec
-    await new Promise(resolve => setTimeout(resolve, 3000))
-
-
     // we can add a 2nd argument OBJECT, for revalidation after a certain time
-    const response = await fetch('http://localhost:4000/tickets',)
-
+    const response = await fetch('http://localhost:4000/tickets',{
+        next:{
+            revalidate: 0
+        }
+    })
     // grab the data from the response
     // returns a promise so we have to await it
-    return response.json()
-}
+    return response.json()}    
+
 // add async
 export default async function TicketsList() {
     // we call it down here, since its a promise we need await
     const tickets = await getTickets()
+    console.log(tickets)
 
   return (
     <>
