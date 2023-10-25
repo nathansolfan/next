@@ -6,6 +6,11 @@ import React from 'react'
 // 
 export const dynamicParams = true
 
+// to genrate a METADATE for each page
+export async function generateMetadata(){
+  
+}
+
 // static rendering the pages
 export async function generateStaticParams() {
     const response = await fetch('http://localhost:4000/tickets')

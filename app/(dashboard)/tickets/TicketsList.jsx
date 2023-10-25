@@ -25,7 +25,6 @@ async function getTickets(){
 export default async function TicketsList() {
     // we call it down here, since its a promise we need await
     const tickets = await getTickets()
-    console.log(tickets)
 
   return (
     <>
