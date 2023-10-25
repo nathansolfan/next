@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Logo from './logo.png'
-import CreateForm from '../tickets/create/CreateForm'
 export default function Navbar() {
   return (
     <nav>

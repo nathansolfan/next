@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import TicketsList from './TicketsList'
-import Loading from './loading'
+import Loading from '../loading'
+import Link from 'next/link'
 // steps to Fetch and Re validate the Data
 // 1 create _data folder and db.json file, insert "id", "title", "body"
 // 2 open terminal - npm install json-server
@@ -13,6 +14,9 @@ export default function Tickets() {
             <h2>Tickets</h2>
             <p><small>Currently open tickets.</small></p>
           </div>
+          <Link href="/tickets/create" className="ml-auto">
+          <button className="btn-primary">New Ticket</button>
+        </Link>
         </nav>
 
         {/* add the Suspense here */}
