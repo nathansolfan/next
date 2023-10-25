@@ -51,12 +51,12 @@ export default function CreateForm() {
         {/* Add some input fields */}
         <label>
             <span>Title:</span>
-            <input
-            required
+            <textarea
+            required          
             // onChange fires a function setTitle, which happens when event(clicked), the target which is the input and the value which is what they type. Watch it real time
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={ (e) => setTitle(e.target.value)}
             // two-way data binding the value is equal to the title
-            value={body}            
+            value={title}            
             />
         </label>
 

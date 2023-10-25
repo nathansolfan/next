@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Logo from './logo.png'
-
+import CreateForm from '../tickets/create/CreateForm'
 export default function Navbar() {
   return (
     <nav>
@@ -21,6 +21,8 @@ export default function Navbar() {
      {/* <Link/> has more options that <a/>  , we import it by typing import Li*/}
      <Link href="/">Home</Link>
      <Link href="/tickets">About me</Link>
+     <Link href="/tickets/create">Create</Link>
+     <Link href="/login">Login</Link>
      </nav>
   )
 }
