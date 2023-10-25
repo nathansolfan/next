@@ -5,6 +5,11 @@
 // must e called GET
 import { NextResponse } from "next/server";
 
+// nextjs is static by default - 1st option to make dynamic
+// add ,{next: {revalidate:0}}
+// to make all route handles dynamic add
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   // to fetch the data from the local server
   // fetch('') - add await cause its async
