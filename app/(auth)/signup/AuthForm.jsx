@@ -20,6 +20,7 @@ export default function AuthForm( {handleSubmit} ) {
             // = () => setEmail()
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
             />
         </label>
         {/* Password Form */}
@@ -27,8 +28,9 @@ export default function AuthForm( {handleSubmit} ) {
             <span>Password:</span>
             <input 
             type="password"
-            onChange={(e)=> setPassword(e.value.target)} 
+            onChange={(e)=> setPassword(e.target.value)} 
             value={password}
+            required
             />
         </label>
         {/* When pressed we have access to the Event (e) on the onSubmit() */}
