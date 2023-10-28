@@ -13,22 +13,12 @@ export default async function DashboardLayout({ children }) {
 const supabase = createServerComponentClient( {cookies})
   // extract data from the supabase.auth and .getSession() method
   // pass it as a prop - remember to add await
-const { data, error } = await supabase.auth.getSession()
-
-// errors
-if (error) {
-  console.error('Error fetching session:', error);
-}
-
-const user = data?.session?.user || null;
-console.log(user);
-console.log(data);
- 
+const { data } = await supabase.auth.getSession() 
 
   return (
     <>
     {/* get it as a prop user={} */}
-    <Navbar user={user}/>
+    <Navbar user={data.session.user }/>
     {children}
 
     </>

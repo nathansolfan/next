@@ -26,12 +26,7 @@ export default function Navbar( {user}) {
      <Link href="/login">Login</Link>
 
      {/* output here the user prop */}
-     {user ? (
-        <p>Welcome, {user.email}</p>
-      ) : (
-        <p>You are not logged in</p>
-      )}
-
+     {user && <span>Hello, {user.email}</span>}
 
      {/* add btn to logout, needs to be a client, which will redirect once logout */}
      <LogoutButton/>
