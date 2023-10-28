@@ -5,7 +5,7 @@
 // This function creates Client Component - access directly on the browser
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs"
 
-import AuthForm from './AuthForm'
+import AuthForm from '../AuthForm'
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -32,7 +32,7 @@ const router = useRouter()
       // options is an object
       options:{
         // url to API endpoint - /api.auth/callback will be called when the user click on the verif email
-        emailRedirectTo: `${location.origin}/api.auth/callback`
+        emailRedirectTo: `${location.origin}/api/auth/callback`
       }
     })
     // Check for the error 
@@ -45,7 +45,6 @@ const router = useRouter()
       // if no error - redirect user to page with message that says they have to verify email
       router.push('/verify')
     }
-    console.log(email, password)
   }
 
   return (

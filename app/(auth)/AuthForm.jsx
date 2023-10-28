@@ -11,7 +11,7 @@ export default function AuthForm( {handleSubmit} ) {
   return (
     // The form itself - label and span - add btn at end
     // Again (e) is the event from the form submission
-    <form onSubmit={(e) => handleSubmit( e, email, password )}>
+    <form onSubmit={(e) => handleSubmit(e, email, password )}>
         <label>
             <span>Email:</span>
             <input
