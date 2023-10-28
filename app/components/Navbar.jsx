@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Logo from './logo.png'
-export default function Navbar() {
+// from dashboard/layout we get the user prop and output it at the bottom
+export default function Navbar( {user}) {
   return (
     <nav>
       {/* 1 - we added the logo.png and now we import it on <Image/> */}
@@ -22,6 +23,10 @@ export default function Navbar() {
      <Link href="/tickets">About me</Link>
      <Link href="/tickets/create">Create</Link>
      <Link href="/login">Login</Link>
+     
+     {/* output here the user prop */}
+     {user && <span>Hello, {user.email}</span>}
+    
      </nav>
   )
 }
