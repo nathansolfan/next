@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Logo from './logo.png'
+import LogoutButton from './LogoutButton'
 // from dashboard/layout we get the user prop and output it at the bottom
 export default function Navbar( {user}) {
   return (
@@ -23,9 +24,17 @@ export default function Navbar( {user}) {
      <Link href="/tickets">About me</Link>
      <Link href="/tickets/create">Create</Link>
      <Link href="/login">Login</Link>
-     
+
      {/* output here the user prop */}
-     {user && <span>Hello, {user.email}</span>}
+     {user ? (
+        <p>Welcome, {user.email}</p>
+      ) : (
+        <p>You are not logged in</p>
+      )}
+
+
+     {/* add btn to logout, needs to be a client, which will redirect once logout */}
+     <LogoutButton/>
     
      </nav>
   )
