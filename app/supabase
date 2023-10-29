@@ -1,0 +1,3 @@
+on supabasewebsite - go on table editor - disable Row Level Security so everyone can interact with it
+add TITLE, BODY, PRIORITY, SET_EMAIL fields
+need to install npm supabase or with nextjs13 that may be problems - npm install -D encoding
