@@ -25,7 +25,7 @@ export default function CreateForm() {
         setIsLoading(true)
 
         // object for the new ticket
-        const newTicket = {
+        const ticket = {
             // no need the hardcore email
             title, body, priority }
 
@@ -38,19 +38,20 @@ export default function CreateForm() {
             // here the data we sending is json
             headers: {"Content-Type": "application/json"},
             // here is the actually data and we stringify it to JSON
-            body: JSON.stringify(newTicket)
+            body: JSON.stringify(ticket)
         })
         
         // handle the resp, await the json I get from it
         // const json = await response.json()
 
-        const json = await response.json();
-        if (response.ok) {
-            router.refresh();
-            router.push('/tickets');
-        } else {
-            console.error('Error:', response.status, response.statusText, json);
-            setIsLoading(false);
+        const jsondata = await res.json()
+        if(jsondata.error){
+            console.log(error.message)
+        }
+        if(jsondata.data){
+            router.refresh()
+            router.push('/')
+        }       
         }
         // now if res ok we redirect
         // the if() will handle the resp diff 
@@ -58,7 +59,6 @@ export default function CreateForm() {
         //     router.refresh()
         //     router.push('/tickets')
         // }
-    }
 
   return (
     // Create form, w-1/2 apply half the width of the page to this form from Tailwind

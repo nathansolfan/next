@@ -21,7 +21,7 @@ export async function POST(request) {
 
   //Insert data from respose - select the table name w/ .from()
   const { data, error } = await supabase
-    .from("tickets")
+    .from("ticketstest")
     // .insert add the objects
     .insert({
       // ...tickets to select all and email: the current user
@@ -35,7 +35,5 @@ export async function POST(request) {
   // it all comes back as data, which is added on the const {} = ...from('tickets)
 
   // This step get the response object as json
-  if (error) {
-    return NextResponse.json({ data, error });
-  }
+  return NextResponse.json({ data, error });
 }

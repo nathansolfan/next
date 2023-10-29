@@ -1,5 +1,8 @@
 import Link from "next/link"
-import React from "react"
+import {createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+
+
 
 // by standard all components are servers
 // server components we can declare as asysnc
@@ -8,18 +11,17 @@ import React from "react"
 // to fetch the data we create a function outside
 // its coming from json server
 async function getTickets(){
+  const supabase = createServerComponentClient({cookies})
+  const {data, error} = await supabase.from('ticketstest')
+  // select from tickets
+  .select()
 
-    // imitate a delay
-    // we wait a Promise to resolve, which will take 3sec
-    // we can add a 2nd argument OBJECT, for revalidation after a certain time
-    const response = await fetch('http://localhost:4000/tickets',{
-        next:{
-            revalidate: 0
-        }
-    })
-    // grab the data from the response
-    // returns a promise so we have to await it
-    return response.json()}    
+  if(error){
+    console.log(error.message)
+  }
+  return data
+}    
+
 
 // add async
 export default async function TicketsList() {

@@ -21,7 +21,7 @@ export default function Navbar( {user}) {
     <h1>Next JS My project</h1>
      {/* <Link/> has more options that <a/>  , we import it by typing import Li*/}
      <Link href="/">Home</Link>
-     <Link href="/tickets">About me</Link>
+     <Link href="/tickets">Tickets</Link>
      <Link href="/tickets/create">Create</Link>
      <Link href="/login">Login</Link>
 
