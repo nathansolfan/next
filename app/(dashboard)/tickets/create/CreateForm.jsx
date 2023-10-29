@@ -26,22 +26,38 @@ export default function CreateForm() {
 
         // object for the new ticket
         const newTicket = {
-            title, body, priority, user_email:'mario@hotmail.com'
-        }
+            // no need the hardcore email
+            title, body, priority }
 
         // we are sending the - 1st argment the url. 2nd is the object
-        const response = await fetch('http://localhost:4000/tickets', {
+
+        // instead of :4000/tickets which is the local server
+        // Send it to the api present here
+        const response = await fetch('http://localhost:3000/api/tickets', {
             method: "POST",
             // here the data we sending is json
             headers: {"Content-Type": "application/json"},
             // here is the actually data and we stringify it to JSON
             body: JSON.stringify(newTicket)
         })
-        // now if res ok we redirect
-        if(response.status === 201){
-            router.refresh()
-            router.push('/tickets')
+        
+        // handle the resp, await the json I get from it
+        // const json = await response.json()
+
+        const json = await response.json();
+        if (response.ok) {
+            router.refresh();
+            router.push('/tickets');
+        } else {
+            console.error('Error:', response.status, response.statusText, json);
+            setIsLoading(false);
         }
+        // now if res ok we redirect
+        // the if() will handle the resp diff 
+        // if(response.status === 201){
+        //     router.refresh()
+        //     router.push('/tickets')
+        // }
     }
 
   return (
@@ -51,8 +67,9 @@ export default function CreateForm() {
         {/* Add some input fields */}
         <label>
             <span>Title:</span>
-            <textarea
-            required          
+            <input
+            required
+            type="text"          
             // onChange fires a function setTitle, which happens when event(clicked), the target which is the input and the value which is what they type. Watch it real time
             onChange={ (e) => setTitle(e.target.value)}
             // two-way data binding the value is equal to the title

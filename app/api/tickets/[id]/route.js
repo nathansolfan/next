@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export async function GET(_, { params }) {
   // 1 - add {params} for parameter, gets its id, use it with ${} to grab it

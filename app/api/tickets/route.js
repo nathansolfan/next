@@ -1,46 +1,41 @@
-// api/tickets
-// to fetch data from client component we need this different.
-
-// export a function, async cause we making a fetch request inside this
-// must e called GET
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
-// nextjs is static by default - 1st option to make dynamic
-// add ,{next: {revalidate:0}}
-// to make all route handles dynamic add
+// the previous code is located at oldroute.js - that is related to json-server --watch --port 4000 ./_data/db.json
+
 export const dynamic = "force-dynamic";
-
-export async function GET() {
-  // to fetch the data from the local server
-  // fetch('') - add await cause its async
-  // wrap it to a a variable
-  const response = await fetch("http://localhost:4000/tickets");
-
-  const tickets = await response.json();
-
-  return NextResponse.json(tickets, {
-    status: 200,
-  });
-}
-
-// POST request that will be made on POSTMAN
-// We send the data and receive it on the parameters
-// from request can request the json of it
 
 export async function POST(request) {
   const ticket = await request.json();
 
-  const response = await fetch("http://localhost:4000/tickets", {
-    method: "POST",
-    // here the data we sending is json
-    headers: { "Content-Type": "application/json" },
-    // here is the actually data and we stringify it to JSON
-    body: JSON.stringify(ticket),
-  });
-  // to get the response of the new ticket sent from POSTMAN with its new ID aswell
-  const newTicket = await response.json();
+  //Get supabase instance - to interact with db
+  const supabase = createRouteHandlerClient({ cookies });
 
-  return NextResponse.json(newTicket, {
-    status: 201,
-  });
+  //Get the user session - we need that to add the email
+  // use supa get current session - Used that before
+  // from data: { get the session}
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  //Insert data from respose - select the table name w/ .from()
+  const { data, error } = await supabase
+    .from("tickets")
+    // .insert add the objects
+    .insert({
+      // ...tickets to select all and email: the current user
+      ...ticket,
+      user_email: session.user.email,
+    })
+    // select it back and returns it
+    .select()
+    // usually it comes back as array and we get it as json object
+    .single();
+  // it all comes back as data, which is added on the const {} = ...from('tickets)
+
+  // This step get the response object as json
+  if (error) {
+    return NextResponse.json({ data, error });
+  }
 }
