@@ -44,7 +44,7 @@ export default function CreateForm() {
         // handle the resp, await the json I get from it
         // const json = await response.json()
 
-        const jsondata = await res.json()
+        const jsondata = await response.json()
         if(jsondata.error){
             console.log(error.message)
         }
