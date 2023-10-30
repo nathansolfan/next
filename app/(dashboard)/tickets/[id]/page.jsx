@@ -42,7 +42,7 @@ export async function generateMetadata( {params }){
 async function getTicket(id){  
 // Do the same thing as before
 const supabase = createServerComponentClient({cookies})
-const { data } = await supabase.from('ticketstest')
+const {data} = await supabase.from('ticketstest')
 .select()
 .eq('id', id)
 .single()
@@ -84,8 +84,9 @@ export default async function TicketDetails({params}) {
           
           <div className="ml-auto">
           {data.session.user.email === ticket.user_email && (
-  <DeleteButton id={ticket.id} />
-)}
+            //use the ticket.id as ${id on the DeleteButton}
+          <DeleteButton id={ticket.id} />
+          )}
         </div>
         </nav>
         <div className="card">

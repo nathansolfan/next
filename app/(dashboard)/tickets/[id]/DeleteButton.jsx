@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from "next/navigation"
 // Import few things
 
 // Usestate for a IsLoading 
@@ -9,12 +10,29 @@ import { TiDelete } from "react-icons/ti"
 // pass the ID as prop - I have access from the page || const ticket = await getTicket(params.id)
 
 export default function DeleteButton({id}) {
+    const router = useRouter()
     // isLoading is false to start with
     const [isLoading, setIsLoading] = useState(false)
 
+// from app\api\tickets\[id]\route.js
     const handleClick = async () => {
         setIsLoading(true)
-        console.log('deleting id -', id)
+        // get ID from the params
+        const response = await fetch(`http://localhost:3000/api/tickets/${id}`, {
+            method: 'DELETE'
+        })
+        // get the response data
+        const json = await response.json()
+
+        if(json.error){
+            console.log(json.error)  // change `error` to `json.error`
+            setIsLoading(false)            
+        }
+        if(!json.error){
+            // import router from next/navigation to refresh page and redirect to another page if no error
+            router.refresh()
+            router.push('/tickets')
+        }
     }
     
 
@@ -44,3 +62,4 @@ export default function DeleteButton({id}) {
    </button>
   )
 }
+// 6.30m explain
