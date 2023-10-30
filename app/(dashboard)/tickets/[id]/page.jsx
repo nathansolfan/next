@@ -1,3 +1,5 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -7,41 +9,50 @@ import React from 'react'
 export const dynamicParams = true
 
 // to genrate a METADATE for each page
-export async function generateMetadata(){
-  
+export async function generateMetadata( {params }){
+  // supabase instance
+  const supabase = createServerComponentClient( {cookies} )
+  // select the table and get its data - data and ticket are the same
+  const { data: ticket } = await supabase.from('ticketstest')
+  .select()
+  // select everything when a condition is equal
+  .eq('id', params.id)
+  .single()  
+
+  return {
+    // add ? to see if it has a value
+    title: `Nathan NextJS Project | ${ticket?.title || 'Ticket not found'}`
+  }
 }
 
-// static rendering the pages
-export async function generateStaticParams() {
-    const response = await fetch('http://localhost:4000/tickets')
+// // static rendering the pages
+// // NO MORE neeeded when Auth comes in place
+// export async function generateStaticParams() {
+//     const response = await fetch('http://localhost:4000/tickets')
 
-const tickets = await response.json()
-// we map though the response (tickets) and prerender the ids
-return tickets.map((ticket)=> ({
-    id: ticket.id
-}))
-}
+// const tickets = await response.json()
+// // we map though the response (tickets) and prerender the ids
+// return tickets.map((ticket)=> ({
+//     id: ticket.id
+// }))
+// }
 
 // we fetch the single ID
 async function getTicket(id){  
-      // imitate a delay
-    // we wait a Promise to resolve, which will take 3sec
-    await new Promise(resolve => setTimeout(resolve, 3000))
-    
-    // this is similar to TicketsList.jsx, but we include the ${id}
-    const response = await fetch(`http://localhost:4000/tickets/${id}`, {
-        next:{
-            revalidate: 60
-        }
-    })
+// Do the same thing as before
+const supabase = createServerComponentClient( {cookies})
+const { data } = await supabase.from('ticketstest')
+.select()
+.eq('id', id)
+.single()
+
 // inside the getTicket() we add the notFound
-    if(!response.ok){
+    if(!data){
         notFound()
     }
-
     // grab the data from the response
     // returns a promise so we have to await it
-    return response.json()
+    return data
 }
 
 // here we create a function TicketDetails and use the
