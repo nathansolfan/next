@@ -12,13 +12,13 @@ export default function Navbar( {user}) {
       src={Logo}
       alt='Logo picture'
       // we set a width bc the pic is big
-      width={70}
+      width={75}
       // quality = default is 70or80 
       quality={100}
       // look at the source of the img and while it a blur while the image loads
       placeholder='blur'
       />
-    <h1>Next JS My project</h1>
+    <h1>Nathan Ferreira`s Portfolio</h1>
      {/* <Link/> has more options that <a/>  , we import it by typing import Li*/}
      <Link href="/">Home</Link>
      <Link href="/tickets">Tickets</Link>

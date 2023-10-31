@@ -13,7 +13,7 @@ body {
   @apply text-gray-600 m-8;
 }
 h1, h2 {
-  @apply font-bold text-purple-600 text-lg;
+  @apply font-bold text-red-600 text-lg;
 }
 main {
   @apply max-w-5xl my-12 mx-auto px-8;
@@ -22,7 +22,7 @@ main > h2 {
   @apply mb-4 pb-2 text-base;
 }
 p > a {
-  @apply text-purple-600 underline;
+  @apply text-yellow-600 underline;
 }
 
 /* Nav Styles */
@@ -47,7 +47,7 @@ button:hover {
   @apply bg-opacity-90;
 }
 .btn-primary {
-  @apply bg-purple-600 text-white;
+  @apply bg-yellow-600 text-white;
 }
 .btn-secondary {
   @apply bg-gray-300 text-gray-900;

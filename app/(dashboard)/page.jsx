@@ -8,8 +8,10 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main>
-      <h2>Dashboard</h2>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero repellendus tempore, exercitationem odit, quasi doloremque possimus recusandae alias sequi totam soluta natus iure eius, obcaecati sint dolores blanditiis aspernatur quo officia iusto ut. Et, aliquid sed voluptates iste cum totam, facere explicabo, fugit suscipit ratione aspernatur consequuntur ex mollitia quaerat?</p>
+      <h2>Welcome</h2>
+      <p>I have a strong foundation in front-end and back-end development, with a keen eye for creating responsive and visually appealing web designs. My journey in the world of web development are hosted on GitHub.One of my primary areas of focus is building web applications using React progressing to NextJS and integrating them with robust databases, particularly MongoDB or Postman
+        Also PHP using MySQL which acts similar to MongoDB.
+        This allows me to create dynamic, data-driven solutions that meet the unique needs of businesses and users alike.</p>
 
       <div className="flex justify-center my-8">
         <Link href="/tickets">
