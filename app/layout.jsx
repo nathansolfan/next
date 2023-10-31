@@ -7,6 +7,10 @@ import './globals.css'
 // COMPONENTS
 import Navbar from './components/Navbar'
 
+// Add dynamic so nextjs will render it dynamic not static
+// such as cookies and with this line there is no error
+export const dynamic = 'force-dynamic'
+
 
 // here`s an example of the fonts
 // changed from Inter to Rubik, also the const name
